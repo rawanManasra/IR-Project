@@ -73,7 +73,7 @@ public class TermVectorsPassageSearcher implements PassageSearcher {
 	public List<Passage> search(Query query, TopDocs topDocs, int numPassages, int passageLength) throws IOException {
 		// Extract query terms.
 		final Set<Term> queryTerms = new HashSet<>();
-		query.createWeight(searcher, false).extractTerms(queryTerms);
+		query.createWeight(searcher, false,1.0f).extractTerms(queryTerms);
 		// Generate candidate passages.
 		final IndexReader reader = searcher.getIndexReader();
 		final List<Passage> candidatePassages = new ArrayList<>();

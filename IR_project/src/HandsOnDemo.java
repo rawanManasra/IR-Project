@@ -16,7 +16,9 @@
  * limitations under the License.
  */
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map.Entry;
@@ -64,10 +66,6 @@ public class HandsOnDemo {
 		TERM_VECTOR_TYPE.freeze();
 	}
 
-	private static final String[][] DATA = new String[][] {
-			new String[] { "doc0", "First document with one sentence." },
-			new String[] { "doc1", "Second document. With two sentences." } };
-
 	public static void main(String[] args) throws Exception {
 		try (Directory dir = newDirectory(); Analyzer analyzer = newAnalyzer()) {
 			// Index
@@ -77,8 +75,8 @@ public class HandsOnDemo {
 					String ans = pair.getValue();
 					Long id = pair.getKey();
 					final Document doc = new Document();
-					doc.add(new StringField("id", ans, Store.YES));
-					doc.add(new TextField("body",String.valueOf(id), Store.YES));
+					doc.add(new StringField("id", ans, Store.NO));
+					doc.add(new TextField("body", String.valueOf(id), Store.NO));
 					// doc.add(new Field(BODY_FIELD, docData[1], TERM_VECTOR_TYPE));
 					writer.addDocument(doc);
 				}
@@ -86,16 +84,17 @@ public class HandsOnDemo {
 
 			// Search
 			try (DirectoryReader reader = DirectoryReader.open(dir)) {
-				logIndexInfo(reader);
-
+				StringBuilder sb =  logIndexInfo(reader);
+				File file = new File("log.txt");
+				try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+				    writer.write(sb.toString());
+				}
 				final QueryParser qp = new QueryParser(BODY_FIELD, analyzer);
-				final Query q = qp.parse("how do you erase memory thingys, the things that when u type in search remember, or how do u turn it off?");
+				final Query q = qp.parse(
+						"how do you erase memory thingys, the things that when u type in search remember, or how do u turn it off");
 				System.out.println("Query: " + q);
-				System.out.println();
-
 				final IndexSearcher searcher = new IndexSearcher(reader);
-				final TopDocs td = searcher.search(q, 10);
-
+				final TopDocs td = searcher.search(q, 5);
 				final FastVectorHighlighter highlighter = new FastVectorHighlighter();
 				final FieldQuery fieldQuery = highlighter.getFieldQuery(q, reader);
 				for (final ScoreDoc sd : td.scoreDocs) {
@@ -111,8 +110,8 @@ public class HandsOnDemo {
 	}
 
 	private static Directory newDirectory() throws IOException {
-	//	return new RAMDirectory();
-	return FSDirectory.open(new File("d:/tmp/ir-class/demo").toPath());
+		// return new RAMDirectory();
+		return FSDirectory.open(new File("d:/tmp/ir-class/demo").toPath());
 	}
 
 	private static Analyzer newAnalyzer() {
@@ -125,20 +124,21 @@ public class HandsOnDemo {
 				.setCommitOnClose(true);
 	}
 
-	private static void logIndexInfo(IndexReader reader) throws IOException {
-		System.out.println("Index info:");
-		System.out.println("----------");
-		System.out.println("Docs: " + reader.numDocs());
+	private static StringBuilder logIndexInfo(IndexReader reader) throws IOException {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(
+				"Index info:" + System.getProperty("line.separator") + "--------" + System.getProperty("line.separator")
+						+ " Docs: " + reader.numDocs() + System.getProperty("line.separator"));
 		final Fields fields = MultiFields.getFields(reader);
 		// instead of iterator was iterable.
-		System.out.println("Fields: " + fields.iterator().toString());
-		System.out.println("Terms:");
+		sb.append("Fields: " + fields.spliterator().toString() + System.getProperty("line.separator") + "Terms:"
+				+ System.getProperty("line.separator"));
 		for (final String field : fields) {
 			final Terms terms = MultiFields.getTerms(reader, field);
-			System.out.println(Utils.format("  %s (sumTTF=%d sumDF=%d)", field, terms.getSumTotalTermFreq(),
-					terms.getSumDocFreq()));
+			sb.append(Utils.format(" %s (sumTTF=%d sumDF=%d)", field,
+			 terms.getSumTotalTermFreq(),
+			 terms.getSumDocFreq()) + System.getProperty("line.separator"));
 			final TermsEnum termsEnum = terms.iterator();
-			final StringBuilder sb = new StringBuilder();
 			while (termsEnum.next() != null) {
 				sb.append("    ").append(termsEnum.term().utf8ToString());
 				sb.append(" (").append(termsEnum.docFreq()).append(")");
@@ -155,11 +155,12 @@ public class HandsOnDemo {
 					sb.append(']');
 					sb.append("} ");
 				}
-				System.out.println(sb);
-				sb.setLength(0);
+				 //System.out.println(sb);
+				// sb.setLength(0);
 			}
 		}
-		System.out.println();
+		return sb;
+		// System.out.println();
 	}
 
 }
