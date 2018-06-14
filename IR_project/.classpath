@@ -33,5 +33,15 @@
 			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-7.3.1/lucene-7.3.1/docs/queryparser/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-7.3.1/lucene-7.3.1/expressions/lucene-expressions-7.3.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-7.3.1/lucene-7.3.1/docs/expressions/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-7.3.1/lucene-7.3.1/analysis/smartcn/lucene-analyzers-smartcn-7.3.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-7.3.1/lucene-7.3.1/docs/analyzers-smartcn/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

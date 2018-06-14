@@ -70,8 +70,8 @@ public class HandsOnDemo {
 		try (Directory dir = newDirectory(); Analyzer analyzer = newAnalyzer()) {
 			// Index
 			try (IndexWriter writer = new IndexWriter(dir, newIndexWriterConfig(analyzer))) {
-				ReadYahooDataBase rd = new ReadYahooDataBase();
-				for (Entry<Long, String> pair : rd.Curps.entrySet()) {
+				//ReadYahooDataBase rd = new ReadYahooDataBase();
+				for (Entry<Long, String> pair : ReadYahooDataBase.readDataBase().entrySet()) {
 					String ans = pair.getValue();
 					Long id = pair.getKey();
 					final Document doc = new Document();
@@ -97,6 +97,7 @@ public class HandsOnDemo {
 				final TopDocs td = searcher.search(q, 5);
 				final FastVectorHighlighter highlighter = new FastVectorHighlighter();
 				final FieldQuery fieldQuery = highlighter.getFieldQuery(q, reader);
+				System.out.println(td.totalHits);
 				for (final ScoreDoc sd : td.scoreDocs) {
 					final String[] snippets = highlighter.getBestFragments(fieldQuery, reader, sd.doc, BODY_FIELD, 100,
 							3);
@@ -154,6 +155,7 @@ public class HandsOnDemo {
 					}
 					sb.append(']');
 					sb.append("} ");
+					sb.append(System.getProperty("line.separator"));
 				}
 				 //System.out.println(sb);
 				// sb.setLength(0);

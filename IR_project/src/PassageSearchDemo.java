@@ -41,6 +41,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import com.jsonReading.ReadYahooDataBase;
+import com.query.AppConstants;
 
 public class PassageSearchDemo {
 
@@ -58,16 +59,14 @@ public class PassageSearchDemo {
 	
 	public static void main(String[] args) throws Exception {
 		//create directory and create analyzer
-		ReadYahooDataBase rd = new ReadYahooDataBase();
-		
 		try (Directory dir = newDirectory(); Analyzer analyzer = newAnalyzer()) {
 			// create index writer for the analyzer and the created directory.
+			
 			try (IndexWriter writer = new IndexWriter(dir, newIndexWriterConfig(analyzer))) {
 				//iterate over the data base
-				for (Entry<Long, String> pair : rd.Curps.entrySet()) {
+				for (Entry<Long, String> pair : ReadYahooDataBase.readDataBase().entrySet()) {
 					String answer = pair.getValue();
-					Long id = pair.getKey();
-				
+					Long id = pair.getKey();				
 					//create document
 					final Document doc = new Document();
 					//add id field to the created document, n=and store it.
@@ -78,13 +77,17 @@ public class PassageSearchDemo {
 					writer.addDocument(doc);
 				}
 			}
+			//Directory dir = 
 
 			// create a directory reader to read the created directory
 			try (DirectoryReader reader = DirectoryReader.open(dir)) {
 				// create a query parser to parse the query according to English analyzer
 				final QueryParser qp = new QueryParser(BODY_FIELD, analyzer);
 				//parse "jimmy hollywood" into the query parser
-				final Query q = qp.parse("Why scientist don't find a proper medicine for cancer");
+				String question = "Why scientist don't find a proper medicine for cancer?";
+				com.query.Query qur = new com.query.Query("0", question);
+				
+				final Query q = qp.parse(qur.getQuestion());
 				//create index searcher for the directory reader, in order to search through it
 				final IndexSearcher searcher = new IndexSearcher(reader);
 				//find the top 10 hits of the query
@@ -118,7 +121,7 @@ public class PassageSearchDemo {
 	 * @return the created analyzer
 	 */
 	private static Analyzer newAnalyzer() {
-		return new EnglishAnalyzer();
+		return new EnglishAnalyzer(AppConstants.stopWords);
 	}
 
 	/**

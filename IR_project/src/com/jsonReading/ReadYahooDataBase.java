@@ -11,9 +11,9 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
 public final class ReadYahooDataBase {
-	public  static List<QAData> DataBase;
-	public HashMap<Long,String> Curps = new HashMap<Long,String>();
-	public ReadYahooDataBase() throws FileNotFoundException {
+	static List<QAData> DataBase;
+	static HashMap<Long,String> Curps = new HashMap<Long,String>();	
+	public static HashMap<Long,String> readDataBase() throws FileNotFoundException {
 		final java.lang.reflect.Type QAType = new TypeToken<List<QAData>>() {
 		}.getType();
 		DataBase = new Gson().fromJson(new JsonReader(new FileReader("nfL6.json")), QAType); // contains the whole QA list
@@ -24,5 +24,6 @@ public final class ReadYahooDataBase {
 				i++;
 			}
 		}
+		return Curps;
 	}
 }

@@ -3,11 +3,13 @@ package com.query;
 public class Query {
 	public Query(String id, String question) {
 		this.id = id;
-		this.question = question;
+		String[] splitQuery = question.split("\\?");
+		for(String s:splitQuery) {
+			this.question+= s;
+		}
 	}
-
 	String id;
-	String question;
+	String question = "";
 
 	public String getId() {
 		return id;
