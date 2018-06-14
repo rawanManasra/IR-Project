@@ -54,6 +54,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import com.jsonReading.ReadYahooDataBase;
+import com.passage.Utils;
 
 public class HandsOnDemo {
 	private static final String BODY_FIELD = "body";
