@@ -63,7 +63,7 @@ public interface PassageScorer {
 	 * originated.
 	 */
 	static PassageScorer DOC_SCORE_AND_QUERY_TF = (passages) -> passages
-			.forEach(p -> p.setScore(p.getDocScore()  * p.getQueryTerms().values().stream().mapToInt(List::size).sum()));
+			.forEach(p -> p.setScore(p.getDocScore()* p.getQueryTerms().values().stream().mapToInt(List::size).sum()));
 
 	/** Scores a list of passages. */
 	void score(List<Passage> passages) throws IOException;

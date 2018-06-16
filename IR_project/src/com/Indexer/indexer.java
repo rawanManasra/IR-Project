@@ -14,6 +14,8 @@ import org.apache.lucene.document.FieldType;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
+import org.apache.lucene.index.SnapshotDeletionPolicy;
+import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.Directory;
 
 import com.jsonReading.ReadYahooDataBase;
@@ -22,15 +24,20 @@ import com.query.AppConstants;
 public class indexer {
 	private static IndexWriter writer;
 
-
-
 	void close() throws IOException {
 		writer.close();
 	}
 
-	static void createIndex(Directory dir,Analyzer analyzer) throws IOException {
-		//analyzer = new EnglishAnalyzer(AppConstants.stopWords);
+	static void createIndex(Directory dir, Analyzer analyzer) throws IOException {
+		// analyzer = new EnglishAnalyzer(AppConstants.stopWords);
+
 		IndexWriterConfig indCon = new IndexWriterConfig(analyzer).setOpenMode(OpenMode.CREATE).setCommitOnClose(true);
+		final Similarity similarity = indCon.getSimilarity();
+		if (similarity != null)
+			indCon.setSimilarity(similarity);
+		final SnapshotDeletionPolicy snapshotDeletionPolicy = new SnapshotDeletionPolicy(
+				indCon.getIndexDeletionPolicy());
+		indCon.setIndexDeletionPolicy(snapshotDeletionPolicy);
 		writer = new IndexWriter(dir, indCon);
 		HashMap<Long, String> Curpus = ReadYahooDataBase.readDataBase();
 		long f = System.currentTimeMillis();
@@ -52,11 +59,11 @@ public class indexer {
 			writer.addDocument(doc);
 		}
 		long e = System.currentTimeMillis();
-		System.out.println("indexing time: " + (e-f));
+		System.out.println("indexing time: " + (e - f));
 		writer.close();
 	}
 
-	public static void indixing(Directory dir,Analyzer analyzer) throws IOException {
-		createIndex(dir,analyzer);
+	public static void indixing(Directory dir, Analyzer analyzer) throws IOException {
+		createIndex(dir, analyzer);
 	}
 }

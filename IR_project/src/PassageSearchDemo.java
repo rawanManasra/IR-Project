@@ -58,7 +58,7 @@ public class PassageSearchDemo {
 		try (Directory dir = newDirectory(); EnglishAnalyzer analyzer = newAnalyzer()) {
 			long startTime = System.currentTimeMillis();
 			//indexer.indixing(dir, analyzer);
-			String question = "when you buy a e book to make money online does it tells you directions how to make money?";
+			String question = "How expensive are the activities is cancun?";
 			searcher.searchQuery(removeStopWords(question, analyzer), dir, analyzer);
 			long endTime = System.currentTimeMillis();
 			System.out.println(endTime-startTime);
