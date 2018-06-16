@@ -53,6 +53,7 @@ import org.apache.lucene.search.vectorhighlight.FieldQuery;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+import com.analyzer.graph;
 import com.jsonReading.ReadYahooDataBase;
 import com.passage.Utils;
 
@@ -117,7 +118,7 @@ public class HandsOnDemo {
 	}
 
 	private static Analyzer newAnalyzer() {
-		return new EnglishAnalyzer();
+		return new graph();
 	}
 
 	private static IndexWriterConfig newIndexWriterConfig(Analyzer analyzer) {

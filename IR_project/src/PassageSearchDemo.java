@@ -17,16 +17,20 @@
  */
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.apache.lucene.analysis.StopFilter;
+
+import org.apache.lucene.analysis.core.StopFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.core.LowerCaseFilter;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
 import org.apache.lucene.analysis.standard.ClassicFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
+import org.apache.lucene.analysis.synonym.WordnetSynonymParser;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.TextField;
@@ -52,20 +56,19 @@ public class PassageSearchDemo {
 		// create directory and create analyzer
 
 		try (Directory dir = newDirectory(); EnglishAnalyzer analyzer = newAnalyzer()) {
-			indexer.indixing(dir, analyzer);
-			String question = "What is the meaning of 'duplex' and 'hirarchy'?";
-			//System.out.println(question);
-			//System.out.println(removeStopWords(question,analyzer));
+			long startTime = System.currentTimeMillis();
+			//indexer.indixing(dir, analyzer);
+			String question = "when you buy a e book to make money online does it tells you directions how to make money?";
 			searcher.searchQuery(removeStopWords(question, analyzer), dir, analyzer);
+			long endTime = System.currentTimeMillis();
+			System.out.println(endTime-startTime);
 		}
-
 	}
 
 	public static String removeStopWords(String textFile,EnglishAnalyzer analyzer) throws Exception {
 		StandardTokenizer stdToken =  new StandardTokenizer();
 		stdToken.setReader(new StringReader(textFile));
 		TokenStream tokenStream = new StopFilter(new ASCIIFoldingFilter(new ClassicFilter(new LowerCaseFilter(stdToken))),analyzer.getStopwordSet());
-		//tokenStream = new StopFilter( tokenStream, analyzer.getStopwordSet());
 		StringBuilder sb = new StringBuilder();
 		tokenStream.reset();
 		CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
@@ -87,11 +90,25 @@ public class PassageSearchDemo {
 		return FSDirectory.open(new File("d:/tmp/ir-class/search").toPath());
 	}
 
+//	public static void Initializer(){
+//	    try {
+//	        JWNL.initialize(new FileInputStream("file_properties.xml"));
+//	        dictionary = Dictionary.getInstance();
+//	        morphPro = dictionary.getMorphologicalProcessor();
+//	    }
+//	    catch(FileNotFoundException e){
+//	        e.printStackTrace();
+//
+//	    } catch (JWNLException e) {
+//	        e.printStackTrace();
+//	    }
+//	}
 	/**
 	 * create English Analyzer
 	 * 
 	 * @return the created analyzer
 	 */
+	
 	private static EnglishAnalyzer newAnalyzer() {
 		return new EnglishAnalyzer(AppConstants.getStopWords());
 	}

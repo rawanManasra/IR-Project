@@ -33,6 +33,7 @@ public class indexer {
 		IndexWriterConfig indCon = new IndexWriterConfig(analyzer).setOpenMode(OpenMode.CREATE).setCommitOnClose(true);
 		writer = new IndexWriter(dir, indCon);
 		HashMap<Long, String> Curpus = ReadYahooDataBase.readDataBase();
+		long f = System.currentTimeMillis();
 		for (Entry<Long, String> pair : Curpus.entrySet()) {
 			String answer = pair.getValue();
 			Long id = pair.getKey();
@@ -50,6 +51,9 @@ public class indexer {
 			// add the document to the index writer
 			writer.addDocument(doc);
 		}
+		long e = System.currentTimeMillis();
+		System.out.println("indexing time: " + (e-f));
+		writer.close();
 	}
 
 	public static void indixing(Directory dir,Analyzer analyzer) throws IOException {

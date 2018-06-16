@@ -107,7 +107,7 @@ public class Passage {
 			termOffsets = new ArrayList<>();
 			queryTerms.put(term, termOffsets);
 		}
-		termOffsets.add(offsets);
+				termOffsets.add(offsets);
 		return this;
 	}
 

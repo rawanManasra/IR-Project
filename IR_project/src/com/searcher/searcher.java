@@ -34,8 +34,7 @@ public class searcher {
 		final TopDocs td = searcher.search(q, 5);
 		final PassageSearcher passageSearcher = new TermVectorsPassageSearcher(searcher, AppConstants.body, 0.1,
 				PassageScorer.DOC_SCORE_AND_QUERY_TF);
-
-		final List<Passage> passages = passageSearcher.search(q, td, 5, 1000);
+		final List<Passage> passages = passageSearcher.search(q, td, 200, 40000);
 		for (final Passage passage : passages) {
 			System.out.println(
 					Utils.format("doc = %s, doc_score=%.4f, psg_score=%.4f, query_terms=%s, offsets=(%d,%d)\n%s\n",
