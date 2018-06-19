@@ -94,7 +94,7 @@ public class TermVectorsPassageSearcher implements PassageSearcher {
 				final int end = start + Math.min(passageLength, text.length() - start);
 				docPassages.add(new Passage().setDocID(docID).setDocScore(sd.score).setText(text.substring(start, end))
 						.setStartOffset(start).setEndOffset(end));
-				start += passageLength * (1.0 - overlapRatio);
+				start += passageLength;
 			}
 			// Search for query terms' occurrence within passages, using document term
 			// vectors.

@@ -15,11 +15,6 @@
 			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/core/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/demo/lucene-demo-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/demo/"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/queryparser/"/>
@@ -35,5 +30,10 @@
 			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/highlighter/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/googleapi.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/hrstc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/lucene-1.4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/lucene-demos-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

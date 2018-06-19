@@ -5,7 +5,7 @@ public class Query {
 		this.id = id;
 		String[] splitQuery = question.split("\\?");
 		for(String s:splitQuery) {
-			this.question+= s;
+			this.question+= (s + " ");
 		}
 	}
 	String id;

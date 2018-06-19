@@ -16,12 +16,16 @@
  * limitations under the License.
  */
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
-
+import java.io.Writer;
+import java.util.ArrayList;
 
 import org.apache.lucene.analysis.core.StopFilter;
 import org.apache.lucene.analysis.TokenStream;
@@ -38,7 +42,11 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import com.Indexer.indexer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.query.AppConstants;
+import com.query.Query;
+import com.query.bestAnswers;
 import com.searcher.searcher;
 
 public class PassageSearchDemo {
@@ -57,18 +65,32 @@ public class PassageSearchDemo {
 
 		try (Directory dir = newDirectory(); EnglishAnalyzer analyzer = newAnalyzer()) {
 			long startTime = System.currentTimeMillis();
-			//indexer.indixing(dir, analyzer);
-			String question = "How expensive are the activities is cancun?";
-			searcher.searchQuery(removeStopWords(question, analyzer), dir, analyzer);
+			// indexer.indixing(dir, analyzer);
+			ArrayList<Query> questions = readQuestions("questions.txt");
+			ArrayList<bestAnswers> bestAns = new ArrayList<bestAnswers>();
+			for (Query question : questions) {
+				bestAns.add(searcher.searchQuery(removeStopWords(question.getQuestion(), analyzer), question.getId(),
+						dir, analyzer));
+			}
+			Writer writer = new FileWriter("Output.json");
+			Gson gson = new GsonBuilder().create();
+			for (bestAnswers ans : bestAns) {
+				System.out.println(ans);
+			
+				gson.toJson(ans, writer);
+			}
+
 			long endTime = System.currentTimeMillis();
-			System.out.println(endTime-startTime);
+
+			System.out.println(endTime - startTime);
 		}
 	}
 
-	public static String removeStopWords(String textFile,EnglishAnalyzer analyzer) throws Exception {
-		StandardTokenizer stdToken =  new StandardTokenizer();
+	public static String removeStopWords(String textFile, EnglishAnalyzer analyzer) throws Exception {
+		StandardTokenizer stdToken = new StandardTokenizer();
 		stdToken.setReader(new StringReader(textFile));
-		TokenStream tokenStream = new StopFilter(new ASCIIFoldingFilter(new ClassicFilter(new LowerCaseFilter(stdToken))),analyzer.getStopwordSet());
+		TokenStream tokenStream = new StopFilter(
+				new ASCIIFoldingFilter(new ClassicFilter(new LowerCaseFilter(stdToken))), analyzer.getStopwordSet());
 		StringBuilder sb = new StringBuilder();
 		tokenStream.reset();
 		CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
@@ -90,27 +112,44 @@ public class PassageSearchDemo {
 		return FSDirectory.open(new File("d:/tmp/ir-class/search").toPath());
 	}
 
-//	public static void Initializer(){
-//	    try {
-//	        JWNL.initialize(new FileInputStream("file_properties.xml"));
-//	        dictionary = Dictionary.getInstance();
-//	        morphPro = dictionary.getMorphologicalProcessor();
-//	    }
-//	    catch(FileNotFoundException e){
-//	        e.printStackTrace();
-//
-//	    } catch (JWNLException e) {
-//	        e.printStackTrace();
-//	    }
-//	}
+	// public static void Initializer(){
+	// try {
+	// JWNL.initialize(new FileInputStream("file_properties.xml"));
+	// dictionary = Dictionary.getInstance();
+	// morphPro = dictionary.getMorphologicalProcessor();
+	// }
+	// catch(FileNotFoundException e){
+	// e. printStackTrace();
+	//
+	// } catch (JWNLException e) {
+	// e.printStackTrace();
+	// }
+	// }
 	/**
 	 * create English Analyzer
 	 * 
 	 * @return the created analyzer
 	 */
-	
+
 	private static EnglishAnalyzer newAnalyzer() {
 		return new EnglishAnalyzer(AppConstants.getStopWords());
+	}
+
+	private static ArrayList<Query> readQuestions(String fileName) throws IOException {
+		FileReader fr = new FileReader(fileName);
+		BufferedReader br = new BufferedReader(fr);
+		String sCurrentLine;
+		ArrayList<Query> questions = new ArrayList<Query>();
+		while ((sCurrentLine = br.readLine()) != null) {
+			String[] line = sCurrentLine.split("\t");
+			//System.out.println(line[0]);
+			//System.out.println(line[0]+"   "+line[1]);
+			Query query = new Query(line[0], line[1]);
+			questions.add(query);
+
+		}
+		br.close();
+		return questions;
 	}
 
 }
