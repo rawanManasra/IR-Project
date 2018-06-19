@@ -3,10 +3,11 @@ package com.query;
 import java.util.ArrayList;
 
 public class bestAnswers {
-	ArrayList<Answer> answers;
 	String id;
 	
-	public bestAnswers(ArrayList<Answer> ans,String id) {
+	ArrayList<Answer> answers;
+
+	public bestAnswers(String id,ArrayList<Answer> ans) {
 		answers = ans;
 		this.id = id;
 	}

@@ -44,7 +44,7 @@ public class searcher {
 			Answer ans = new Answer(passage.getText(),passage.getDocScore());
 			answers.add(ans);
 		}
-		return new bestAnswers(answers,id);
+		return new bestAnswers(id,answers);
 //		for (final Passage passage : passages) {
 //			System.out.println(
 //					Utils.format("doc = %s, doc_score=%.4f, psg_score=%.4f, query_terms=%s, offsets=(%d,%d)\n%s\n",
