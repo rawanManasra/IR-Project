@@ -25,4 +25,8 @@ public final class ReadYahooDataBase {
 		}
 		return Curps;
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }

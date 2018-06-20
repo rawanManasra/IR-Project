@@ -35,5 +35,7 @@
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/junit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/lucene-1.4.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/lucene-demos-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/queries/lucene-queries-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/args4j-2.0.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

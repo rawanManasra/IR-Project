@@ -62,24 +62,22 @@ public class PassageSearchDemo {
 
 	public static void main(String[] args) throws Exception {
 		// create directory and create analyzer
-
 		try (Directory dir = newDirectory(); EnglishAnalyzer analyzer = newAnalyzer()) {
 			long startTime = System.currentTimeMillis();
 			// indexer.indixing(dir, analyzer);
-			ArrayList<Query> questions = readQuestions("questions.txt");
+			ArrayList<Query> questions = readQuestions("finalEval.txt");
 			ArrayList<bestAnswers> bestAns = new ArrayList<bestAnswers>();
 			for (Query question : questions) {
 				bestAns.add(searcher.searchQuery(removeStopWords(question.getQuestion(), analyzer), question.getId(),
 						dir, analyzer));
 			}
 			Writer writer = new FileWriter("Output.json");
-			Gson gson = new GsonBuilder().create();
+			Gson gson = new  GsonBuilder().setPrettyPrinting().create();
 			for (bestAnswers ans : bestAns) {
-				System.out.println(ans);
-			
 				gson.toJson(ans, writer);
 			}
-
+			writer.flush();
+			writer.close();
 			long endTime = System.currentTimeMillis();
 
 			System.out.println(endTime - startTime);
@@ -99,6 +97,9 @@ public class PassageSearchDemo {
 			sb.append(term + " ");
 		}
 		tokenStream.close();
+		if(sb.length() == 0) {
+			sb.append("verb noun");
+		}
 		return sb.toString();
 	}
 
