@@ -46,7 +46,8 @@ public class searcher {
 		final IndexSearcher searcher = new IndexSearcher(reader);
 	//	VSMSimilarity vsmSim = new VSMSimilarity();
 		// find the top 10 hits of the query
-		 //   searcher.setSimilarity(vsmSim);
+		//searcher.setSimilarity();
+		//    searcher.setSimilarity(vsmSim);
 
 		final TopDocs td = searcher.search(q, 5);
 		final PassageSearcher passageSearcher = new TermVectorsPassageSearcher(searcher, AppConstants.body, 0.1,

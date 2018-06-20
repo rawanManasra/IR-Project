@@ -7,6 +7,8 @@ import org.apache.lucene.search.CollectionStatistics;
 import org.apache.lucene.search.DefaultSimilarity;
 import org.apache.lucene.search.TermStatistics;
 import org.apache.lucene.search.similarities.Similarity;
+import org.apache.lucene.search.similarities.Similarity.SimScorer;
+import org.apache.lucene.search.similarities.Similarity.SimWeight;
 
 public class VSMSimilarity extends Similarity{
 
@@ -71,7 +73,6 @@ public class VSMSimilarity extends Similarity{
         return super.coord(overlap, maxOverlap);
     }
 
-	@Override
 	public long computeNorm(FieldInvertState state) {
 		 if (doOverlap){
 	            return 1;

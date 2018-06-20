@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import com.query.bestAnswers;
 
 public final class ReadYahooDataBase {
 	static List<QAData> DataBase;
@@ -26,7 +29,10 @@ public final class ReadYahooDataBase {
 		return Curps;
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws JsonIOException, JsonSyntaxException, FileNotFoundException {
+		final java.lang.reflect.Type QAType = new TypeToken<List<bestAnswers>>() {
+		}.getType();
+		List<bestAnswers> hh = new Gson().fromJson(new JsonReader(new FileReader("Output.json")),QAType);
+		System.out.println(hh.size());
 	}
 }

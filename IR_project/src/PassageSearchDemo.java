@@ -73,9 +73,12 @@ public class PassageSearchDemo {
 			}
 			Writer writer = new FileWriter("Output.json");
 			Gson gson = new  GsonBuilder().setPrettyPrinting().create();
-			for (bestAnswers ans : bestAns) {
-				gson.toJson(ans, writer);
-			}
+			gson.toJson(bestAns,writer);
+			
+//			for (bestAnswers ans : bestAns) {
+//				gson.toJson(ans, writer);
+//			}
+			
 			writer.flush();
 			writer.close();
 			long endTime = System.currentTimeMillis();
