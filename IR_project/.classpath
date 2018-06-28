@@ -2,40 +2,20 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/gson-2.6.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/jawjaw-1.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/ws4j-1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/analysis/common/lucene-analyzers-common-6.0.0.jar">
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/analysis/common/lucene-analyzers-common-6.0.0.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/analyzers-common/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/core/lucene-core-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/core/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/queryparser/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/codecs/lucene-codecs-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/codecs/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/highlighter/lucene-highlighter-6.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/docs/highlighter/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/googleapi.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/hrstc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/junit.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/lucene-1.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/LucQE/LucQE/lib/lucene-demos-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/lucene-6.0.0/queries/lucene-queries-6.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/user/Desktop/IR/IR-Project/IR_project/lib/args4j-2.0.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/demo/lucene-demo-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/core/lucene-core-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/codecs/lucene-codecs-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/highlighter/lucene-highlighter-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/queries/lucene-queries-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/args4j-2.0.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/jawjaw-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/ws4j-1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

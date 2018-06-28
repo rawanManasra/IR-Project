@@ -18,8 +18,6 @@
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,7 +32,6 @@ import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
 import org.apache.lucene.analysis.standard.ClassicFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
-import org.apache.lucene.analysis.synonym.WordnetSynonymParser;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.TextField;
@@ -64,7 +61,7 @@ public class PassageSearchDemo {
 		// create directory and create analyzer
 		try (Directory dir = newDirectory(); EnglishAnalyzer analyzer = newAnalyzer()) {
 			long startTime = System.currentTimeMillis();
-			// indexer.indixing(dir, analyzer);
+			 indexer.indixing(dir, analyzer);
 			ArrayList<Query> questions = readQuestions("finalEval.txt");
 			ArrayList<bestAnswers> bestAns = new ArrayList<bestAnswers>();
 			for (Query question : questions) {
@@ -73,12 +70,7 @@ public class PassageSearchDemo {
 			}
 			Writer writer = new FileWriter("Output.json");
 			Gson gson = new  GsonBuilder().setPrettyPrinting().create();
-			gson.toJson(bestAns,writer);
-			
-//			for (bestAnswers ans : bestAns) {
-//				gson.toJson(ans, writer);
-//			}
-			
+			gson.toJson(bestAns,writer);		
 			writer.flush();
 			writer.close();
 			long endTime = System.currentTimeMillis();
@@ -113,22 +105,10 @@ public class PassageSearchDemo {
 	 * @throws IOException
 	 */
 	private static Directory newDirectory() throws IOException {
-		return FSDirectory.open(new File("d:/tmp/ir-class/search").toPath());
+		return FSDirectory.open(new File("index").toPath());
 	}
 
-	// public static void Initializer(){
-	// try {
-	// JWNL.initialize(new FileInputStream("file_properties.xml"));
-	// dictionary = Dictionary.getInstance();
-	// morphPro = dictionary.getMorphologicalProcessor();
-	// }
-	// catch(FileNotFoundException e){
-	// e. printStackTrace();
-	//
-	// } catch (JWNLException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	
 	/**
 	 * create English Analyzer
 	 * 
