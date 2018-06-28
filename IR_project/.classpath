@@ -12,10 +12,10 @@
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/core/lucene-core-6.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/codecs/lucene-codecs-6.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/highlighter/lucene-highlighter-6.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/queries/lucene-queries-6.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/args4j-2.0.16.jar"/>
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/jawjaw-1.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/ws4j-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/rawan/eclipse-workspace/projectIR/IR-Project/IR_project/lib/lucene-6.0.0/queryparser/lucene-queryparser-6.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

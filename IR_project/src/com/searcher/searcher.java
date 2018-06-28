@@ -38,17 +38,10 @@ public class searcher {
 			throws ParseException, IOException {
 		DirectoryReader reader = DirectoryReader.open(dir);
 		final QueryParser qp = new QueryParser(AppConstants.body, analyzer);
-		//com.query.Query qur = new com.query.Query("0", question);
-		//System.out.println(question);
 		try {
 		final Query q = qp.parse(question);
 		// create index searcher for the directory reader, in order to search through it
 		final IndexSearcher searcher = new IndexSearcher(reader);
-	//	VSMSimilarity vsmSim = new VSMSimilarity();
-		// find the top 10 hits of the query
-		//searcher.setSimilarity();
-		//    searcher.setSimilarity(vsmSim);
-
 		final TopDocs td = searcher.search(q, 5);
 		final PassageSearcher passageSearcher = new TermVectorsPassageSearcher(searcher, AppConstants.body, 0.1,
 				PassageScorer.DOC_SCORE_AND_QUERY_TF);
@@ -64,14 +57,6 @@ public class searcher {
 			System.out.println(question + " id " + id);
 			return null;
 		}
-		
-
-//		for (final Passage passage : passages) {
-//			System.out.println(
-//					Utils.format("doc = %s, doc_score=%.4f, psg_score=%.4f, query_terms=%s, offsets=(%d,%d)\n%s\n",
-//							passage.getDocID(), passage.getDocScore(), passage.getScore(), passage.getQueryTerms(),
-//							passage.getStartOffset(), passage.getEndOffset(), passage.getText()));
-//		}
 	}
 
 }

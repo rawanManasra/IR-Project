@@ -40,7 +40,6 @@ public class TermVectorsPassageSearcher implements PassageSearcher {
 
 	private final IndexSearcher searcher;
 	private final String field;
-	private final double overlapRatio;
 	private final PassageScorer passageScorer;
 
 	/**
@@ -59,7 +58,6 @@ public class TermVectorsPassageSearcher implements PassageSearcher {
 			PassageScorer passageScorer) {
 		this.searcher = searcher;
 		this.field = field;
-		this.overlapRatio = overlapRatio;
 		this.passageScorer = passageScorer;
 	}
 

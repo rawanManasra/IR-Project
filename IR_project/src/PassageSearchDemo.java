@@ -60,8 +60,7 @@ public class PassageSearchDemo {
 	public static void main(String[] args) throws Exception {
 		// create directory and create analyzer
 		try (Directory dir = newDirectory(); EnglishAnalyzer analyzer = newAnalyzer()) {
-			long startTime = System.currentTimeMillis();
-			 indexer.indixing(dir, analyzer);
+			// indexer.indixing(dir, analyzer);
 			ArrayList<Query> questions = readQuestions("finalEval.txt");
 			ArrayList<bestAnswers> bestAns = new ArrayList<bestAnswers>();
 			for (Query question : questions) {
@@ -73,9 +72,6 @@ public class PassageSearchDemo {
 			gson.toJson(bestAns,writer);		
 			writer.flush();
 			writer.close();
-			long endTime = System.currentTimeMillis();
-
-			System.out.println(endTime - startTime);
 		}
 	}
 

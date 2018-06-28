@@ -29,18 +29,12 @@ public class indexer {
 	}
 
 	static void createIndex(Directory dir, Analyzer analyzer) throws IOException {
-		// analyzer = new EnglishAnalyzer(AppConstants.stopWords);
-
 		IndexWriterConfig indCon = new IndexWriterConfig(analyzer).setOpenMode(OpenMode.CREATE).setCommitOnClose(true);
-		final Similarity similarity = indCon.getSimilarity();
-		if (similarity != null)
-			indCon.setSimilarity(similarity);
 		final SnapshotDeletionPolicy snapshotDeletionPolicy = new SnapshotDeletionPolicy(
-				indCon.getIndexDeletionPolicy());
+		indCon.getIndexDeletionPolicy());
 		indCon.setIndexDeletionPolicy(snapshotDeletionPolicy);
 		writer = new IndexWriter(dir, indCon);
 		HashMap<Long, String> Curpus = ReadYahooDataBase.readDataBase();
-		long f = System.currentTimeMillis();
 		for (Entry<Long, String> pair : Curpus.entrySet()) {
 			String answer = pair.getValue();
 			Long id = pair.getKey();
@@ -58,8 +52,6 @@ public class indexer {
 			// add the document to the index writer
 			writer.addDocument(doc);
 		}
-		long e = System.currentTimeMillis();
-		System.out.println("indexing time: " + (e - f));
 		writer.close();
 	}
 
